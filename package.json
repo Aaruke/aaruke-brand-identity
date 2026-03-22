@@ -11,7 +11,7 @@
     "start": "vite preview --host",
     "lint": "eslint .",
     "test": "vitest run",
-    "render-build": "vite build",
+    "render-build": "npm install && vite build",
     "render-start": "serve -s dist -p 4000"
   },
 
