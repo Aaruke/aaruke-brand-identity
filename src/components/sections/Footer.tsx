@@ -1,4 +1,30 @@
 import { useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInstagram, faPinterest, faXTwitter } from '@fortawesome/free-brands-svg-icons'; 
+
+
+
+<div>
+  <h3 className="text-xl font-serif text-gold mb-4">Socials</h3>
+  <div className="flex flex-col space-y-3">
+    
+    <a href="#" className="group flex items-center gap-3 text-muted-foreground hover:text-gold transition-colors duration-300">
+      <FontAwesomeIcon icon={faInstagram} className="text-lg transition-transform duration-300 group-hover:scale-110" />
+      <span>Instagram</span>
+    </a>
+
+    <a href="#" className="group flex items-center gap-3 text-muted-foreground hover:text-gold transition-colors duration-300">
+      <FontAwesomeIcon icon={faPinterest} className="text-lg transition-transform duration-300 group-hover:scale-110" />
+      <span>Pinterest</span>
+    </a>
+
+    <a href="#" className="group flex items-center gap-3 text-muted-foreground hover:text-gold transition-colors duration-300">
+      <FontAwesomeIcon icon={faXTwitter} className="text-lg transition-transform duration-300 group-hover:scale-110" />
+      <span>Twitter</span>
+    </a>
+
+  </div>
+</div>
 
 
 
@@ -29,9 +55,9 @@ const Footer = () => {
             Socials
             <div className="flex gap-4 justify-center md:justify-start mt-4">
                 <ul>
-                <li><a href="#" className="font-sans text-xs text-muted-foreground/50 hover:text-gold transition-colors">Instagram</a></li>
-                <li><a href="#" className="font-sans text-xs text-muted-foreground/50 hover:text-gold transition-colors">Pinterest</a></li>
-                <li><a href="#" className="font-sans text-xs text-muted-foreground/50 hover:text-gold transition-colors">Twitter</a></li>
+                <li><a href="#" className="font-sans text-xs text-muted-foreground/50 hover:text-gold transition-colors">Instagram &nbsp;&nbsp;<FontAwesomeIcon icon={faInstagram} /></a></li>
+                <li><a href="#" className="font-sans text-xs text-muted-foreground/50 hover:text-gold transition-colors">Pinterest &nbsp;&nbsp;<FontAwesomeIcon icon={faPinterest} /></a></li>
+                <li><a href="#" className="font-sans text-xs text-muted-foreground/50 hover:text-gold transition-colors">Twitter &nbsp;&nbsp;<FontAwesomeIcon icon={faXTwitter} /></a></li>
                 </ul>
             
           </div>
