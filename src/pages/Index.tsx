@@ -11,7 +11,7 @@ const Hero = () => (
   <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
     {/* Background image */}
     <div className="absolute inset-0">
-      <img src={phoenixHero} alt="Phoenix Necklace by Aaruke – Spirit Animal Jewelry" className="w-full h-full object-cover" loading="eager" />
+      <img src={phoenixHero} alt="Phoenix Necklace by Aaruke – Spirit Animal Jewellery" className="w-full h-full object-cover" loading="eager" />
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/40" />
     </div>
 
@@ -20,7 +20,7 @@ const Hero = () => (
     <div className="relative z-10 max-w-3xl mx-auto text-center px-6 pt-24 pb-16">
       <ScrollReveal>
         <p className="tracking-luxury uppercase text-sm font-sans text-gold mb-8 font-light">
-          Aaruke · Spirit Animal Jewelry
+          Aaruke · Spirit Animal Jewellery
         </p>
       </ScrollReveal>
 
@@ -50,7 +50,7 @@ const Hero = () => (
 
       <ScrollReveal delay={0.6}>
         <p className="text-xs font-sans text-muted-foreground tracking-wide">
-          Limited Founder Release · Spirit Animal Jewelry · India
+          Limited Founder Release · Spirit Animal Jewellery · India
         </p>
       </ScrollReveal>
     </div>
@@ -66,12 +66,12 @@ const BrandStory = () => (
       </ScrollReveal>
       <ScrollReveal delay={0.1}>
         <h2 className="font-serif text-4xl md:text-5xl font-light mb-8 leading-[1.1] text-ivory">
-          More Than Jewelry. A Symbolic Identity.
+          More Than Jewellery. A Symbolic Identity.
         </h2>
       </ScrollReveal>
       <ScrollReveal delay={0.2}>
         <p className="font-sans text-base md:text-lg text-muted-foreground leading-relaxed mb-8 font-light max-w-2xl mx-auto">
-          Aaruke transforms ancient spirit animal symbolism into modern wearable identity pieces. Each creation represents a different archetype — rebirth, strength, protection, intuition, courage. Phoenix is the beginning. The first modern Indian spirit animal jewelry brand.
+          Aaruke transforms ancient spirit animal symbolism into modern wearable identity pieces. Each creation represents a different archetype — rebirth, strength, protection, intuition, courage. Phoenix is the beginning. The first modern Indian spirit animal jewellery brand.
         </p>
       </ScrollReveal>
       <ScrollReveal delay={0.3}>
@@ -103,7 +103,7 @@ const SpiritUniverse = () => (
         </ScrollReveal>
         <ScrollReveal delay={0.2}>
           <p className="font-sans text-muted-foreground max-w-xl mx-auto font-light leading-relaxed">
-            Every spirit animal represents a different inner force. We are building a collection where you don't choose jewelry — you choose who you are becoming.
+            Every spirit animal represents a different inner force. We are building a collection where you don't choose jewellery — you choose who you are becoming.
           </p>
         </ScrollReveal>
       </div>
@@ -138,8 +138,8 @@ const SpiritUniverse = () => (
 const meaningBlocks = [
   { title: "Strength After Struggle", desc: "The phoenix does not rise from comfort. It rises from ashes. This piece honors every battle that forged you." },
   { title: "Beauty After Breaking", desc: "What was destroyed becomes the source of new power. The phoenix necklace carries the weight of transformation." },
-  { title: "Rising Into Power", desc: "Rebirth isn't passive. It's a declaration. A symbolic jewelry piece for those who refuse to stay down." },
-  { title: "Jewelry as Identity", desc: "Not an accessory. An anchor. A daily reminder of who you've become through everything you've survived." },
+  { title: "Rising Into Power", desc: "Rebirth isn't passive. It's a declaration. A symbolic jewellery piece for those who refuse to stay down." },
+  { title: "Jewellery as Identity", desc: "Not an accessory. An anchor. A daily reminder of who you've become through everything you've survived." },
 ];
 
 const Meaning = () => (
@@ -156,7 +156,7 @@ const Meaning = () => (
         </ScrollReveal>
         <ScrollReveal delay={0.2}>
           <p className="font-sans text-muted-foreground max-w-xl mx-auto font-light leading-relaxed">
-            A rebirth necklace rooted in ancient symbolism. Symbolic jewelry that carries transformation jewelry philosophy from India to the world.
+            A rebirth necklace rooted in ancient symbolism. Symbolic jewellery that carries transformation jewellery philosophy from India to the world.
           </p>
         </ScrollReveal>
       </div>
@@ -202,7 +202,7 @@ const ProductShowcase = () => {
             <div className="relative glow-ember">
               <img
                 src={selected === "gold" ? phoenixGold : phoenixSilver}
-                alt={`${selected === "gold" ? "Gold" : "Silver"} Phoenix Necklace India – Aaruke Spirit Animal Jewelry`}
+                alt={`${selected === "gold" ? "Gold" : "Silver"} Phoenix Necklace India – Aaruke Spirit Animal Jewellery`}
                 className="w-full aspect-square object-cover"
                 loading="lazy"
               />
@@ -226,11 +226,11 @@ const ProductShowcase = () => {
           <ScrollReveal direction="right" delay={0.15}>
             <div className="space-y-6">
               <p className="font-sans text-muted-foreground font-light leading-relaxed">
-                A symbolic phoenix pendant necklace crafted with premium finish. Skin-friendly, lightweight, and designed as a statement minimalist piece — meaningful jewelry for those who carry fire within.
+                A symbolic phoenix pendant necklace crafted with premium finish. Skin-friendly, lightweight, and designed as a statement minimalist piece — meaningful jewellery for those who carry fire within.
               </p>
 
               <ul className="space-y-3 font-sans text-sm text-foreground/70">
-                {["Symbolic phoenix pendant", "Premium skin-friendly finish", "Lightweight daily wear", "Statement minimalist design", "Meaningful jewelry gift"].map((item) => (
+                {["Symbolic phoenix pendant", "Premium skin-friendly finish", "Lightweight daily wear", "Statement minimalist design", "Meaningful jewellery for the Fire within "].map((item) => (
                   <li key={item} className="flex items-center gap-3">
                     <Star className="w-3 h-3 text-gold flex-shrink-0" />
                     {item}
@@ -260,7 +260,7 @@ const ProductShowcase = () => {
 
 /* ─── WHY DIFFERENT ─── */
 const differentiators = [
-  "India's emerging spirit animal jewelry brand",
+  "India's emerging spirit animal jewellery brand",
   "Meaning-driven design, not trend-driven",
   "Limited production batches",
   "Designed for identity, not decoration",
@@ -370,7 +370,7 @@ const Footer = () => {
           <div>
             <h3 className="font-serif text-2xl text-ivory mb-3">Aaruke</h3>
             <p className="font-sans text-sm text-muted-foreground font-light leading-relaxed">
-              India's first spirit animal jewelry house. Each piece is a symbol. Each symbol, a story of becoming.
+              India's first spirit animal jewellery house. Each piece is a symbol. Each symbol, a story of becoming.
             </p>
           </div>
           <div>
