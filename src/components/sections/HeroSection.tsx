@@ -39,7 +39,7 @@ const Hero = () => (
             Own Your Rise
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </a>
-          <a href="#meaning" className="inline-flex items-center gap-2 border border-foreground/20 px-8 py-4 font-sans text-sm tracking-luxury uppercase font-light text-foreground transition-all duration-300 hover:border-gold hover:text-gold active:scale-[0.97]">
+          <a href="#meaning" className="meaning inline-flex items-center gap-2 border border-foreground/20 px-8 py-4 font-sans text-sm tracking-luxury uppercase font-light text-foreground transition-all duration-300 hover:border-gold hover:text-gold active:scale-[0.97]">
             Discover the Meaning
           </a>
         </div>

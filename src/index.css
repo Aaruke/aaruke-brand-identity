@@ -169,4 +169,9 @@
   animation: slow-pulse 4s ease-in-out infinite;
 }
 
+.meaning{
+  padding-left: none;
+  padding-right: none;
+}
+
 

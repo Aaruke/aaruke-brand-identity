@@ -7,6 +7,7 @@ import ProductShowcase from "@/components/sections/ProductShowcase";
 import WhyDifferent from "@/components/sections/WhyDifferent";
 import Scarcity from "@/components/sections/Scarcity";
 import Footer from "@/components/sections/Footer";
+import CartDrawer from "@/components/sections/CartDrawer";
 
 
 
