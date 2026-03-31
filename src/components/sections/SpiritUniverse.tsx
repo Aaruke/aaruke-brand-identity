@@ -114,17 +114,9 @@ export const SpiritUniverse = () => (
           ))}
         </div>
         
+        
       </div>
     </section>
-
-
-      <ScrollReveal delay={0.4}>
-        <div className="text-center">
-          <a href="#signup" className="inline-flex items-center gap-2 border border-gold/30 px-8 py-4 font-sans text-sm tracking-luxury uppercase font-light text-gold transition-all duration-300 hover:bg-gold/5 active:scale-[0.97]">
-            Join the Circle
-          </a>
-        </div>
-      </ScrollReveal>
     </div>
   </section>
 );
