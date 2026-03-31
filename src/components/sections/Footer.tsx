@@ -36,7 +36,7 @@ const Footer = () => {
       <div className="max-w-5xl mx-auto">
         <div className="grid md:grid-cols-3 gap-12 md:gap-16 mb-12">
           <div className="space-y-4 text-center md:text-left">
-            <h3 className="font-serif text-2xl text-ivory mb-3">Aaruke</h3>
+            <h3 className="font-serif text-2xl text-ivory mb-3" style={{fontFamily:"italic" , fontWeight:"100"}}>Aarukè</h3>
             <p className="font-sans text-sm text-muted-foreground font-light leading-relaxed">
               India's first spirit animal jewellery house. Each piece is a symbol. Each symbol, a story of becoming.
             </p>

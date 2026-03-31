@@ -1,13 +1,14 @@
 import { ScrollReveal } from "../ScrollReveal";
-import { ArrowRight } from "lucide-react";
-import phoenixHero from "@/assets/phoenix-hero.jpg";
+import { ArrowRight , Diamond} from "lucide-react";
+import phoenixHero from "@/assets/aaruke-new-hero.png";
 import { EmberParticles } from "../EmberParticles";
+
 
 const Hero = () => (
   <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
     {/* Background image */}
     <div className="absolute inset-0">
-      <img src={phoenixHero} alt="Phoenix Necklace by Aaruke – Spirit Animal Jewellery" className="w-full h-full object-cover" loading="eager" />
+      <img src={phoenixHero} alt="Phoenix Necklace by Aaruke – Spirit Animal Jewellery" className="w-full h-full object-cover object-top" loading="eager" />
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/40" />
     </div>
 
@@ -15,15 +16,15 @@ const Hero = () => (
 
     <div className="relative z-10 max-w-3xl mx-auto text-center px-6 pt-24 pb-16">
       <ScrollReveal>
-        <p className="tracking-luxury uppercase text-sm font-sans text-gold mb-8 font-light">
-          Aaruke · Spirit Animal Jewellery
+        <p className="tracking-luxury uppercase text-sm font-sans mb-8 font-light">
+          Spirit Animal Jewellery
         </p>
       </ScrollReveal>
 
       <ScrollReveal delay={0.15}>
         <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl font-light leading-[0.95] mb-6 text-ivory">
           <div className="text-center">Phoenix Necklace</div>  
-           <div style={{ fontSize: '2rem' }}>Symbol of Rebirth</div>
+           <div style={{ fontSize: '3rem' }}>Symbol of <span className="text-gold" style={{fontStyle:"italic"}}>Rebirth</span></div>
         </h1>
       </ScrollReveal>
 
@@ -46,9 +47,11 @@ const Hero = () => (
       </ScrollReveal>
 
       <ScrollReveal delay={0.6}>
-        <p className="text-xs font-sans text-muted-foreground tracking-wide">
-          Limited Founder Release · Spirit Animal Jewellery · India
-        </p>
+        <p className="hero-trust" style={{ marginTop:"3rem", fontSize:"1rem", opacity:"50%" ,letterSpacing:"0.03em",  color:"var(--gold-dim)" }}>
+        <span style={{ margin:"0 0.8rem" }}>Limited Founder Release</span>·
+        <span style={{ margin:"0 0.8rem" }}>Spirit Animal Jewellery</span>·
+        <span style={{ margin:"0 0.8rem" }}>India</span>
+      </p>
       </ScrollReveal>
     </div>
   </section>
