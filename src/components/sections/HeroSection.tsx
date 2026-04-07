@@ -15,9 +15,9 @@ const Hero = () => (
 
     <EmberParticles />
 
-    <div className="relative z-10 max-w-3xl mx-auto text-center px-6 pt-24 pb-16">
+    <div className="relative z-10 max-w-3xl mx-auto text-center px-10 md:px-14 pt-24 pb-16">
       <ScrollReveal>
-        <p className="tracking-luxury uppercase text-sm font-sans mb-8 font-light">
+        <p className="tracking-luxury uppercase text-sm font-sans mb-8 mt-8 font-light">
           Spirit Animal Jewellery
         </p>
       </ScrollReveal>
