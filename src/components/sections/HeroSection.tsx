@@ -22,11 +22,20 @@ const Hero = () => (
         </p>
       </ScrollReveal>
 
+
+      {/* font-serif text-5xl sm:text-6xl md:text-7xl font-light leading-[0.95] mb-6 text-ivory */}
       <ScrollReveal delay={0.15}>
         <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl font-light leading-[0.95] mb-6 text-ivory">
-          <div className="text-center">Phoenix Necklace</div>  
-           <div style={{ fontSize: '3rem' }}>Symbol of <span className="text-gold" style={{fontStyle:"italic"}}>Rebirth</span></div>
+          <span className="block text-4xl sm:text-5xl md:text-7xl text-ivory">
+            Phoenix Necklace
+          </span>
+          <span className="block text-4xl sm:text-5xl md:text-7xl text-ivory mt-1 md:mt-2">
+            Symbol of <span className="italic text-gold">Rebirth</span>
+            </span>
         </h1>
+
+        {/* <div className="text-center">Phoenix Necklace</div>  
+           <div style={{ fontSize: '3rem' }}>Symbol of <span className="text-gold" style={{fontStyle:"italic"}}>Rebirth</span></div> */}
       </ScrollReveal>
 
       <ScrollReveal delay={0.3}>
