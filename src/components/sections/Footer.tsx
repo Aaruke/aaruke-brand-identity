@@ -41,9 +41,9 @@ const Footer = () => {
               India's first spirit animal jewellery house. Each piece is a symbol. Each symbol, a story of becoming.
             </p>
           </div>
-          <div>
+          <div className="text-center md:text-left">
             <h4 className="font-sans text-xs tracking-luxury uppercase text-gold mb-4">Philosophy</h4>
-            <ul className="space-y-2 font-sans text-sm text-muted-foreground font-light">
+            <ul className=" flex flex-row flex-wrap justify-center gap-x-6 gap-y-4 md:flex-col md:items-start text-sm font-light text-ivory/60">
               <li>Spirit Animal Mission</li>
               <li>Symbolic Craftsmanship</li>
               <li>Limited Editions</li>
@@ -51,13 +51,12 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className="font-serif text-2xl text-ivory mb-3" >
+          <div className="font-serif text-2xl text-ivory mb-3 text-center md:text-left" >
             Socials
             <div className="flex gap-4 justify-center md:justify-start mt-4">
                 <ul>
                 <li><a href="#" className="font-sans text-xs text-muted-foreground/50 hover:text-gold transition-colors">Instagram &nbsp;&nbsp;<FontAwesomeIcon icon={faInstagram} /></a></li>
                 <li><a href="#" className="font-sans text-xs text-muted-foreground/50 hover:text-gold transition-colors">Pinterest &nbsp;&nbsp;<FontAwesomeIcon icon={faPinterest} /></a></li>
-                <li><a href="#" className="font-sans text-xs text-muted-foreground/50 hover:text-gold transition-colors">Twitter &nbsp;&nbsp;<FontAwesomeIcon icon={faXTwitter} /></a></li>
                 </ul>
             
           </div>

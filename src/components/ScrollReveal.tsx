@@ -30,3 +30,4 @@ export const ScrollReveal = ({ children, className, delay = 0, direction = "up" 
     {children}
   </motion.div>
 );
+

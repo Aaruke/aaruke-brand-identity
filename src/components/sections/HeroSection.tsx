@@ -1,14 +1,15 @@
 import { ScrollReveal } from "../ScrollReveal";
 import { ArrowRight , Diamond} from "lucide-react";
-import phoenixHero from "@/assets/aaruke-new-hero.png";
+import phoenixHero from "@assets/phoenix-background.png";
 import { EmberParticles } from "../EmberParticles";
 
 
 const Hero = () => (
-  <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <section className=" h-[100dvh] bg-[#050707]relative min-h-screen flex items-center justify-center overflow-hidden h-[60vh] md:h-screen">
     {/* Background image */}
     <div className="absolute inset-0">
-      <img src={phoenixHero} alt="Phoenix Necklace by Aaruke – Spirit Animal Jewellery" className="w-full h-full object-cover object-top" loading="eager" />
+      <img src={phoenixHero} className="w-full h-full object-contain object-top md:object-hidden" />
+      {/* <img src={phoenixHero} alt="Phoenix Background" className="hidden md:block w-full h-full object-contain object-top md:object-center " loading="eager" /> */}
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/40" />
     </div>
 

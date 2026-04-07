@@ -4,9 +4,10 @@ import BrandStory from "@/components/sections/BrandStory";
 import SpiritUniverse from "@/components/sections/SpiritUniverse";
 import Meaning from "@/components/sections/Meaning";
 import ProductShowcase from "@/components/sections/ProductShowcase";
-import WhyDifferent from "@/components/sections/WhyDifferent";
-import Scarcity from "@/components/sections/Scarcity";
 import Footer from "@/components/sections/Footer";
+import { Ear } from "lucide-react";
+import EarlyAccess from "@/components/sections/EarlyAccess";
+import WhyDifferent from "@/components/sections/WhyDifferent";  
 
 
 
@@ -20,9 +21,9 @@ const Index = () => (
       <BrandStory />
       <SpiritUniverse />
       <Meaning />
-      <ProductShowcase />
-      <WhyDifferent /> 
-      <Scarcity />
+      <ProductShowcase /> 
+      <WhyDifferent />
+      <EarlyAccess />
     </main>
     <Footer />
   </>
