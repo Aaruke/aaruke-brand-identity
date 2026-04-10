@@ -1,15 +1,120 @@
 import { useState } from "react";
-import phoenixHero from "@/assets/phoenix-gold.jpg"; // Adjust path to your actual image
+import phoenixHero from "@/assets/phoenix-gold.jpg";
 
 const AuthPage = ({ onClose }: { onClose: () => void }) => {
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [fullName, setFullName] = useState("");
+
+  const handleAuthSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    const endpoint = `https://aaruke-shop.myshopify.com/api/2024-01/graphql.json`;
+    const headers = {
+      "Content-Type": "application/json",
+      "X-Shopify-Storefront-Access-Token": "9ef6a69f9a3fb8940291c3cd87cace38",
+    };
+
+    try {
+      if (isLogin) {
+        const loginQuery = `
+          mutation customerAccessTokenCreate($input: CustomerAccessTokenCreateInput!) {
+            customerAccessTokenCreate(input: $input) {
+              customerAccessToken { accessToken expiresAt }
+              customerUserErrors { message }
+            }
+          }
+        `;
+        
+        const response = await fetch(endpoint, {
+          method: "POST",
+          headers,
+          body: JSON.stringify({
+            query: loginQuery,
+            variables: { input: { email, password } }
+          }),
+        });
+
+        const responseJson = await response.json();
+        
+        if (!response.ok || responseJson.errors) {
+          console.error("Shopify Request Failed:", responseJson);
+          alert("Connection refused. Please check your network or API token.");
+          setIsLoading(false);
+          return; 
+        }
+
+        const { data } = responseJson;
+        const errors = data.customerAccessTokenCreate.customerUserErrors;
+
+        if (errors && errors.length > 0) {
+          alert(errors[0].message); 
+        } else {
+          const token = data.customerAccessTokenCreate.customerAccessToken.accessToken;
+          localStorage.setItem("aaruke_token", token);
+          alert("Successfully logged in!");
+          onClose(); 
+        }
+
+      } else {
+        const signUpQuery = `
+          mutation customerCreate($input: CustomerCreateInput!) {
+            customerCreate(input: $input) {
+              customer { id }
+              customerUserErrors { message }
+            }
+          }
+        `;
+
+        const nameParts = fullName.trim().split(" ");
+        const firstName = nameParts[0];
+        const lastName = nameParts.length > 1 ? nameParts.slice(1).join(" ") : ".";
+
+        const response = await fetch(endpoint, {
+          method: "POST",
+          headers,
+          body: JSON.stringify({
+            query: signUpQuery,
+            variables: { input: { email, password, firstName, lastName } }
+          }),
+        });
+
+        const responseJson = await response.json();
+        
+        if (!response.ok || responseJson.errors) {
+          console.error("Shopify Request Failed:", responseJson);
+          alert("Connection refused. Please check your network or API token.");
+          setIsLoading(false);
+          return; 
+        }
+
+        const { data } = responseJson;
+        const errors = data.customerCreate.customerUserErrors;
+
+        if (errors && errors.length > 0) {
+          alert(errors[0].message);
+        } else {
+          alert("Account created! Please sign in with your new password.");
+          setIsLogin(true);
+          setPassword(""); 
+        }
+      }
+    } catch (error) {
+      console.error("Auth Error:", error);
+      alert("Something went wrong connecting to the server. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
-    // 1. Added overflow-y-auto to allow scrolling on small screens
     <section className="fixed inset-0 z-[100] bg-[#050707]/90 backdrop-blur-md overflow-y-auto font-sans p-4 text-ivory">
       
-      {/* 2. Close button is fixed so it stays visible even if you scroll */}
       <button 
         onClick={onClose} 
         className="fixed top-4 right-4 md:top-6 md:right-6 text-ivory/60 hover:text-white tracking-widest uppercase text-xs transition-colors z-[110] bg-black/50 px-3 py-2 rounded-lg"
@@ -17,15 +122,10 @@ const AuthPage = ({ onClose }: { onClose: () => void }) => {
         Close ✕
       </button>
 
-      {/* 3. THIS is the wrapper that centers the content. Notice it wraps everything below it! */}
       <div className="min-h-full flex items-center justify-center py-12 md:py-8">
-
-        {/* Main Container */}
         <div className="w-full max-w-5xl bg-[#0a0c0c] border border-white/10 rounded-2xl overflow-hidden flex flex-col md:flex-row shadow-2xl relative">
           
-          {/* Left Panel: Branding & Imagery (Hidden on small mobile, visible on tablet/desktop) */}
           <div className="hidden md:flex md:w-1/2 relative bg-[#050707] items-end p-12 overflow-hidden">
-            {/* Background Image with Overlay */}
             <img 
               src={phoenixHero} 
               alt="Aaruké Phoenix" 
@@ -33,7 +133,6 @@ const AuthPage = ({ onClose }: { onClose: () => void }) => {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#050707] via-[#050707]/80 to-transparent"></div>
             
-            {/* Text Content */}
             <div className="relative z-10 w-full">
               <h1 className="font-serif italic font-light text-4xl text-ivory uppercase tracking-wide mb-6">
                 Aar<span className="text-[#c5a059]">u</span>kè
@@ -47,10 +146,8 @@ const AuthPage = ({ onClose }: { onClose: () => void }) => {
             </div>
           </div>
 
-          {/* Right Panel: The Form */}
           <div className="w-full md:w-1/2 p-8 md:p-16 flex flex-col justify-center">
             
-            {/* Mobile Logo (Only shows on phone) */}
             <div className="md:hidden mb-10 text-center">
                <h1 className="font-serif italic font-light text-3xl text-ivory uppercase tracking-wide">
                 Aar<span className="text-[#c5a059]">u</span>kè
@@ -68,15 +165,17 @@ const AuthPage = ({ onClose }: { onClose: () => void }) => {
               </p>
             </div>
 
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+            <form className="space-y-6" onSubmit={handleAuthSubmit}>
               
-              {/* Name Field (Only for Sign Up) */}
               {!isLogin && (
                 <div className="space-y-2">
                   <label className="text-xs tracking-widest uppercase text-ivory/80">Full Name</label>
                   <input 
                     type="text" 
-                    placeholder="Atish Kumar"
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                    required={!isLogin}
+                    placeholder="Jane Doe"
                     className="w-full bg-transparent border border-white/10 rounded-lg px-4 py-4 text-sm text-ivory focus:border-[#c5a059] focus:outline-none transition-colors placeholder:text-ivory/20"
                   />
                 </div>
@@ -86,7 +185,10 @@ const AuthPage = ({ onClose }: { onClose: () => void }) => {
                 <label className="text-xs tracking-widest uppercase text-ivory/80">Email Address</label>
                 <input 
                   type="email" 
-                  placeholder="AtishKumar@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  placeholder="hello@example.com"
                   className="w-full bg-transparent border border-white/10 rounded-lg px-4 py-4 text-sm text-ivory focus:border-[#c5a059] focus:outline-none transition-colors placeholder:text-ivory/20"
                 />
               </div>
@@ -96,6 +198,9 @@ const AuthPage = ({ onClose }: { onClose: () => void }) => {
                 <div className="relative">
                   <input 
                     type={showPassword ? "text" : "password"} 
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
                     placeholder="••••••••"
                     className="w-full bg-transparent border border-white/10 rounded-lg px-4 py-4 text-sm text-ivory focus:border-[#c5a059] focus:outline-none transition-colors placeholder:text-ivory/20 tracking-widest"
                   />
@@ -119,13 +224,13 @@ const AuthPage = ({ onClose }: { onClose: () => void }) => {
 
               <button 
                 type="submit"
-                className="w-full bg-[#c5a059] text-black py-4 rounded-lg text-xs tracking-[0.2em] uppercase font-bold hover:bg-[#d4af37] transition-all active:scale-[0.98] mt-4"
+                disabled={isLoading}
+                className="w-full bg-[#c5a059] text-black py-4 rounded-lg text-xs tracking-[0.2em] uppercase font-bold hover:bg-[#d4af37] transition-all active:scale-[0.98] mt-4 disabled:opacity-50 disabled:cursor-wait"
               >
-                {isLogin ? "Sign In" : "Get Started"}
+                {isLoading ? "Verifying..." : (isLogin ? "Sign In" : "Get Started")}
               </button>
             </form>
 
-            {/* Social Logins */}
             <div className="mt-10">
               <div className="relative flex items-center mb-6">
                 <div className="flex-grow border-t border-white/10"></div>
@@ -142,11 +247,13 @@ const AuthPage = ({ onClose }: { onClose: () => void }) => {
               </div>
             </div>
 
-            {/* Toggle State */}
             <p className="text-center mt-10 text-xs text-ivory/60 tracking-wide">
               {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
               <button 
-                onClick={() => setIsLogin(!isLogin)}
+                onClick={() => {
+                  setIsLogin(!isLogin);
+                  setPassword(""); 
+                }}
                 className="text-[#c5a059] hover:text-white transition-colors ml-1 font-medium"
               >
                 {isLogin ? "Sign up" : "Sign in"}
@@ -155,7 +262,7 @@ const AuthPage = ({ onClose }: { onClose: () => void }) => {
 
           </div>
         </div>
-      </div> {/* <-- This closing div is crucial! It closes the centering wrapper */}
+      </div> 
     </section>
   );
 };
