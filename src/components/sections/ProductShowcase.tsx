@@ -2,6 +2,7 @@ import { shopifyClient } from "@/lib/shopify";
 import { ScrollReveal } from "../ScrollReveal";
 import { useState, useEffect } from "react";
 import { CartDrawer, CartItemType } from "./CartDrawer";
+import AuthPage from "./AuthPage";
 
 import phoenixGold from "@/assets/phoenix-gold.jpg";
 import phoenixSilver from "@/assets/phoenix-silver.jpg";
@@ -16,6 +17,7 @@ const ProductShowcase = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [liveProduct, setLiveProduct] = useState<any>(null);
+  const [showAuthModal, setShowAuthModal] = useState(false);
   const [isLoadingData, setIsLoadingData] = useState(true);
 
   useEffect(() => {
@@ -37,6 +39,12 @@ const ProductShowcase = () => {
   }, []);
 
   const handleAddToCart = () => {
+    const isLoggedIn = false; 
+
+    if (!isLoggedIn) {
+      setShowAuthModal(true); // Instantly shows the overlay!
+      return; 
+    }
     if (!liveProduct){
       alert("Product data is still loading from Shopify. Give it one more second!");
       return;
@@ -204,6 +212,9 @@ const handleFinalCheckout = async () => {
         onCheckout={handleFinalCheckout} // Ensure this function is defined as in your original snippet
         isProcessing={isProcessing}
       />
+      {showAuthModal && (
+        <AuthPage onClose={() => setShowAuthModal(false)} />
+      )}
     </>
   );
 };
