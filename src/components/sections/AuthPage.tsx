@@ -57,9 +57,7 @@ const AuthPage = ({ onClose }: { onClose: () => void }) => {
         } else {
           const token = data.customerAccessTokenCreate.customerAccessToken.accessToken;
           localStorage.setItem("aaruke_token", token);
-
           window.dispatchEvent(new Event("auth_change"));
-          
           alert("Successfully logged in!");
           onClose(); 
         }
@@ -116,156 +114,160 @@ const AuthPage = ({ onClose }: { onClose: () => void }) => {
   };
 
   return (
-    <section className="fixed inset-0 z-[100] bg-[#050707]/90 backdrop-blur-md overflow-y-auto font-sans p-4 text-ivory">
+    <section className="fixed inset-0 z-[100] bg-[#050707]/90 backdrop-blur-md overflow-hidden font-sans p-4 text-ivory flex items-center justify-center">
       
       <button 
         onClick={onClose} 
-        className="fixed top-4 right-4 md:top-6 md:right-6 text-ivory/60 hover:text-white tracking-widest uppercase text-xs transition-colors z-[110] bg-black/50 px-3 py-2 rounded-lg"
+        className="fixed top-4 right-4 md:top-6 md:right-6 text-ivory/60 hover:text-white tracking-widest uppercase text-[10px] transition-colors z-[110] bg-black/50 px-3 py-2 rounded-lg"
       >
         Close ✕
       </button>
 
-      <div className="min-h-full flex items-center justify-center py-12 md:py-8">
-        <div className="w-full max-w-5xl bg-[#0a0c0c] border border-white/10 rounded-2xl overflow-hidden flex flex-col md:flex-row shadow-2xl relative">
+      {/* 1. Shrunk max-w to 750px and strictly locked height to 480px */}
+      <div className="w-full max-w-[750px] md:h-[480px] max-h-[90vh] bg-[#0a0c0c] border border-white/10 rounded-2xl overflow-hidden flex flex-col md:flex-row shadow-2xl relative">
+        
+        <div className="hidden md:flex md:w-5/12 relative bg-[#050707] items-end p-6 md:p-8 overflow-hidden">
+          <img 
+            src={phoenixHero} 
+            alt="Aaruké Phoenix" 
+            className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-luminosity hover:mix-blend-normal hover:opacity-60 transition-all duration-1000"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#050707] via-[#050707]/80 to-transparent"></div>
           
-          <div className="hidden md:flex md:w-1/2 relative bg-[#050707] items-end p-12 overflow-hidden">
-            <img 
-              src={phoenixHero} 
-              alt="Aaruké Phoenix" 
-              className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-luminosity hover:mix-blend-normal hover:opacity-60 transition-all duration-1000"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#050707] via-[#050707]/80 to-transparent"></div>
-            
-            <div className="relative z-10 w-full">
-              <h1 className="font-serif italic font-light text-4xl text-ivory uppercase tracking-wide mb-6">
-                Aar<span className="text-[#c5a059]">u</span>kè
-              </h1>
-              <p className="text-sm tracking-widest text-[#c5a059] uppercase mb-4">
-                You can easily
-              </p>
-              <h2 className="font-serif text-4xl leading-tight font-light text-ivory">
-                Get access to your personal hub for clarity and <span className="italic text-[#c5a059]">rebirth</span>.
-              </h2>
-            </div>
+          <div className="relative z-10 w-full">
+            <h1 className="font-serif italic font-light text-xl text-ivory uppercase tracking-wide mb-2">
+              Aar<span className="text-[#c5a059]">u</span>kè
+            </h1>
+            <p className="text-[9px] tracking-widest text-[#c5a059] uppercase mb-1">
+              You can easily
+            </p>
+            <h2 className="font-serif text-xl leading-tight font-light text-ivory">
+              Get access to your personal hub for clarity and <span className="italic text-[#c5a059]">rebirth</span>.
+            </h2>
+          </div>
+        </div>
+
+        {/* 2. REMOVED overflow-y-auto completely. It is now impossible for a scrollbar to appear here. */}
+        <div className="w-full md:w-7/12 p-6 md:p-7 flex flex-col justify-center">
+          
+          <div className="md:hidden mb-3 text-center">
+             <h1 className="font-serif italic font-light text-lg text-ivory uppercase tracking-wide">
+              Aar<span className="text-[#c5a059]">u</span>kè
+            </h1>
           </div>
 
-          <div className="w-full md:w-1/2 p-8 md:p-16 flex flex-col justify-center">
+          <div className="mb-3">
+            <h3 className="text-lg font-serif mb-1">
+              {isLogin ? "Sign In to your Portal" : "Create an account"}
+            </h3>
+            <p className="text-[10px] text-ivory/60 font-light leading-snug">
+              {isLogin 
+                ? "Access your exclusive Spirit Animal details and bespoke orders."
+                : "Join the circle. Access your tasks, notes, and exclusive drops anytime."}
+            </p>
+          </div>
+
+          {/* 3. Tighter space-y-2.5 */}
+          <form className="space-y-2.5" onSubmit={handleAuthSubmit}>
             
-            <div className="md:hidden mb-10 text-center">
-               <h1 className="font-serif italic font-light text-3xl text-ivory uppercase tracking-wide">
-                Aar<span className="text-[#c5a059]">u</span>kè
-              </h1>
-            </div>
-
-            <div className="mb-10">
-              <h3 className="text-3xl font-serif mb-3">
-                {isLogin ? "Sign In to your Portal" : "Create an account"}
-              </h3>
-              <p className="text-xs md:text-sm text-ivory/60 font-light leading-relaxed">
-                {isLogin 
-                  ? "Access your exclusive Spirit Animal details, bespoke orders, and meaningful jewelry in one purposeful place."
-                  : "Join the circle. Access your tasks, notes, and exclusive drops anytime, anywhere."}
-              </p>
-            </div>
-
-            <form className="space-y-6" onSubmit={handleAuthSubmit}>
-              
-              {!isLogin && (
-                <div className="space-y-2">
-                  <label className="text-xs tracking-widest uppercase text-ivory/80">Full Name</label>
-                  <input 
-                    type="text" 
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
-                    required={!isLogin}
-                    placeholder="Jane Doe"
-                    className="w-full bg-transparent border border-white/10 rounded-lg px-4 py-4 text-sm text-ivory focus:border-[#c5a059] focus:outline-none transition-colors placeholder:text-ivory/20"
-                  />
-                </div>
-              )}
-
-              <div className="space-y-2">
-                <label className="text-xs tracking-widest uppercase text-ivory/80">Email Address</label>
+            {!isLogin && (
+              <div className="space-y-1">
+                <label className="text-[8px] tracking-widest uppercase text-ivory/80">Full Name</label>
+                {/* 4. Tighter input padding (py-1.5) and text-size (text-[11px]) */}
                 <input 
-                  type="email" 
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  placeholder="hello@example.com"
-                  className="w-full bg-transparent border border-white/10 rounded-lg px-4 py-4 text-sm text-ivory focus:border-[#c5a059] focus:outline-none transition-colors placeholder:text-ivory/20"
+                  type="text" 
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  required={!isLogin}
+                  placeholder="Jane Doe"
+                  className="w-full bg-transparent border border-white/10 rounded-md px-3 py-1.5 text-[11px] text-ivory focus:border-[#c5a059] focus:outline-none transition-colors placeholder:text-ivory/20"
                 />
               </div>
+            )}
 
-              <div className="space-y-2">
-                <label className="text-xs tracking-widest uppercase text-ivory/80">Password</label>
-                <div className="relative">
-                  <input 
-                    type={showPassword ? "text" : "password"} 
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                    placeholder="••••••••"
-                    className="w-full bg-transparent border border-white/10 rounded-lg px-4 py-4 text-sm text-ivory focus:border-[#c5a059] focus:outline-none transition-colors placeholder:text-ivory/20 tracking-widest"
-                  />
-                  <button 
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-ivory/40 hover:text-[#c5a059] tracking-widest uppercase transition-colors"
-                  >
-                    {showPassword ? "Hide" : "Show"}
-                  </button>
-                </div>
-              </div>
+            <div className="space-y-1">
+              <label className="text-[8px] tracking-widest uppercase text-ivory/80">Email Address</label>
+              <input 
+                type="email" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                placeholder="hello@example.com"
+                className="w-full bg-transparent border border-white/10 rounded-md px-3 py-1.5 text-[11px] text-ivory focus:border-[#c5a059] focus:outline-none transition-colors placeholder:text-ivory/20"
+              />
+            </div>
 
-              {isLogin && (
-                <div className="flex justify-end">
-                  <a href="#" className="text-[10px] text-ivory/60 hover:text-[#c5a059] tracking-widest uppercase transition-colors">
-                    Forgot Password?
-                  </a>
-                </div>
-              )}
-
-              <button 
-                type="submit"
-                disabled={isLoading}
-                className="w-full bg-[#c5a059] text-black py-4 rounded-lg text-xs tracking-[0.2em] uppercase font-bold hover:bg-[#d4af37] transition-all active:scale-[0.98] mt-4 disabled:opacity-50 disabled:cursor-wait"
-              >
-                {isLoading ? "Verifying..." : (isLogin ? "Sign In" : "Get Started")}
-              </button>
-            </form>
-
-            <div className="mt-10">
-              <div className="relative flex items-center mb-6">
-                <div className="flex-grow border-t border-white/10"></div>
-                <span className="flex-shrink-0 mx-4 text-[10px] text-ivory/40 tracking-widest uppercase">
-                  or continue with
-                </span>
-                <div className="flex-grow border-t border-white/10"></div>
-              </div>
-
-              <div className="grid grid-cols-1 gap-4">
-                <button className="flex justify-center items-center py-3 border border-white/10 rounded-lg hover:bg-white/5 transition-colors">
-                  <span className="text-sm font-serif">G</span>
+            <div className="space-y-1">
+              <label className="text-[8px] tracking-widest uppercase text-ivory/80">Password</label>
+              <div className="relative">
+                <input 
+                  type={showPassword ? "text" : "password"} 
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  placeholder="••••••••"
+                  className="w-full bg-transparent border border-white/10 rounded-md px-3 py-1.5 text-[11px] text-ivory focus:border-[#c5a059] focus:outline-none transition-colors placeholder:text-ivory/20 tracking-widest"
+                />
+                <button 
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[9px] text-ivory/40 hover:text-[#c5a059] tracking-widest uppercase transition-colors"
+                >
+                  {showPassword ? "Hide" : "Show"}
                 </button>
               </div>
             </div>
 
-            <p className="text-center mt-10 text-xs text-ivory/60 tracking-wide">
-              {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
-              <button 
-                onClick={() => {
-                  setIsLogin(!isLogin);
-                  setPassword(""); 
-                }}
-                className="text-[#c5a059] hover:text-white transition-colors ml-1 font-medium"
-              >
-                {isLogin ? "Sign up" : "Sign in"}
-              </button>
-            </p>
+            {isLogin && (
+              <div className="flex justify-end pt-0.5">
+                <a href="#" className="text-[9px] text-ivory/60 hover:text-[#c5a059] tracking-widest uppercase transition-colors">
+                  Forgot Password?
+                </a>
+              </div>
+            )}
 
+            {/* Shrunk button padding */}
+            <button 
+              type="submit"
+              disabled={isLoading}
+              className="w-full bg-[#c5a059] text-black py-2 rounded-md text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-[#d4af37] transition-all active:scale-[0.98] mt-1 disabled:opacity-50 disabled:cursor-wait"
+            >
+              {isLoading ? "Verifying..." : (isLogin ? "Sign In" : "Get Started")}
+            </button>
+          </form>
+
+          {/* Social login margins shrunk to mt-3 */}
+          <div className="mt-3">
+            <div className="relative flex items-center mb-2">
+              <div className="flex-grow border-t border-white/10"></div>
+              <span className="flex-shrink-0 mx-3 text-[8px] text-ivory/40 tracking-widest uppercase">
+                or continue with
+              </span>
+              <div className="flex-grow border-t border-white/10"></div>
+            </div>
+
+            <div className="grid grid-cols-1">
+              <button className="flex justify-center items-center py-1.5 border border-white/10 rounded-md hover:bg-white/5 transition-colors">
+                <span className="text-[11px] font-serif">G</span>
+              </button>
+            </div>
           </div>
+
+          <p className="text-center mt-3 text-[10px] text-ivory/60 tracking-wide">
+            {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
+            <button 
+              onClick={() => {
+                setIsLogin(!isLogin);
+                setPassword(""); 
+              }}
+              className="text-[#c5a059] hover:text-white transition-colors ml-1 font-medium"
+            >
+              {isLogin ? "Sign up" : "Sign in"}
+            </button>
+          </p>
+
         </div>
-      </div> 
+      </div>
     </section>
   );
 };
