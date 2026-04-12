@@ -67,8 +67,8 @@ export const SpiritUniverse = () => (
           <div 
             className={`flex flex-col h-full rounded-2xl overflow-hidden bg-black/40 border transition-all duration-500 group ${
               item.status === "available" 
-                ? "border-gold/30 shadow-[0_0_20px_rgba(212,175,55,0.05)]" 
-                : "bg-[#050707] border border-white/5 opacity-50 hover:opacity-70"
+                ? "border-gold/30 shadow-[0_0_20px_rgba(212,175,55,0.05)] opacity-100 hover:shadow-[0_0_20px_rgba(212,175,55,0.2)]" 
+                : "bg-[#050707] border border-white/5 opacity-40 hover:opacity-70"
             }`}
           >
            
@@ -77,7 +77,7 @@ export const SpiritUniverse = () => (
               <img 
                 src={item.image} 
                 alt={item.title} 
-                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000 ease-out"
+                className="w-full h-full object-cover transform transition-transform duration-1000 ease-out"
                 loading="lazy"
               />
             </div>

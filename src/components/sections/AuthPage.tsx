@@ -57,6 +57,9 @@ const AuthPage = ({ onClose }: { onClose: () => void }) => {
         } else {
           const token = data.customerAccessTokenCreate.customerAccessToken.accessToken;
           localStorage.setItem("aaruke_token", token);
+
+          window.dispatchEvent(new Event("auth_change"));
+          
           alert("Successfully logged in!");
           onClose(); 
         }
