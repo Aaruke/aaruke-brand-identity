@@ -1,44 +1,39 @@
 import { ScrollReveal } from "../ScrollReveal";
 
-
-const meaningBlocks = [
-  { title: "Strength After Struggle", desc: "The phoenix does not rise from comfort. It rises from ashes. This piece honors every battle that forged you." },
-  { title: "Beauty After Breaking", desc: "What was destroyed becomes the source of new power. The phoenix necklace carries the weight of transformation." },
-  { title: "Rising Into Power", desc: "Rebirth isn't passive. It's a declaration. A symbolic jewellery piece for those who refuse to stay down." },
-  { title: "Jewellery as Identity", desc: "Not an accessory. An anchor. A daily reminder of who you've become through everything you've survived." },
-];
-
-const Meaning = () => (
-  <section id="meaning" className="py-24 md:py-36 px-6">
-    <div className="max-w-5xl mx-auto">
-      <div className="text-center mb-16">
+function Meaning() {
+  const blocks = [
+    { title:"Strength After Struggle", text:"The phoenix is not born in comfort. It is born in collapse. Every phoenix necklace carries the memory of fire — and the courage to rise from it." },
+    { title:"Rising Into Power",       text:"This rebirth necklace is for those in the act of becoming. Not looking back. Not standing still. Rising — deliberately, powerfully, visibly." },
+    { title:"Jewellery as Identity",   text:"Phoenix jewellery India — meaningful, intentional, designed not to impress others but to remind yourself who you truly are." },
+  ];
+  return (
+    <section id="meaning" style={{ background:"linear-gradient(to bottom, #060908, var(--green-mid) 40%, #060908)", padding:"9rem 2rem", position:"relative", zIndex:1 }}>
+      <div className="meaning-inner" style={{ maxWidth:900, margin:"0 auto", display:"grid", gridTemplateColumns:"1fr 1fr", gap:"5rem", alignItems:"start" }}>
         <ScrollReveal>
-          <p className="tracking-luxury uppercase text-xs font-sans text-gold mb-6">Symbolism</p>
-        </ScrollReveal>
-        <ScrollReveal delay={0.1}>
-          <h2 className="font-serif text-4xl md:text-5xl font-light mb-6 leading-[1.1] text-ivory">
-            The Meaning Behind the Phoenix Necklace
+        <div >
+          <p style={{ fontFamily:"var(--sans)", fontSize:"0.65rem", letterSpacing:"0.35em", textTransform:"uppercase", color:"var(--gold)", marginBottom:"1.2rem" }}>The <span style={{color:"#c9a74a" }}>Meaning</span></p>
+          <h2 style={{ fontFamily:"var(--serif)", fontSize:"clamp(1.8rem,4vw,3rem)", fontWeight:300, color:"var(--ivory)", lineHeight:1.2, marginBottom:"1.5rem" }}>
+            The Phoenix Necklace —<br /><span style={{ fontStyle:"italic", color:"#c9a74a" , fontWeight:"600" }}>What It Carries</span>
           </h2>
-        </ScrollReveal>
-        <ScrollReveal delay={0.2}>
-          <p className="font-sans text-muted-foreground max-w-xl mx-auto font-light leading-relaxed">
-            A rebirth necklace rooted in ancient symbolism. Symbolic jewellery that carries transformation jewellery philosophy from India to the world.
+          
+          <p style={{fontWeight:"600", fontFamily:"var(--serif)", fontSize:"1.05rem", fontStyle:"italic", color:"var(--ivory-dim)", lineHeight:1.85 }}>
+            Across every culture that has known fire, the phoenix has carried the same truth: what breaks you does not end you. It remakes you. This is not jewellery. This is a declaration.
           </p>
+        </div>
         </ScrollReveal>
-      </div>
-
-      <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-        {meaningBlocks.map((block, i) => (
-          <ScrollReveal key={block.title} delay={0.08 * i}>
-            <div className="border border-foreground/8 p-8 md:p-10 transition-all duration-500 hover:border-gold/20 group">
-              <h3 className="font-serif text-2xl mb-3 text-ivory group-hover:text-gold transition-colors duration-500">{block.title}</h3>
-              <p className="font-sans text-sm text-muted-foreground leading-relaxed font-light">{block.desc}</p>
+        <div className="reveal" style={{ display:"flex", flexDirection:"column", gap:"2rem" }}>
+          {blocks.map((b , i) => (
+            <ScrollReveal key={b.title} delay={0.08 * i}>
+            <div key={b.title} style={{ paddingLeft:"1.5rem", borderLeft:"1px solid rgba(201,168,76,0.3)",color:"#c9a74a"  }}>
+              <h3 style={{ fontFamily:"var(--sans)", fontSize:"1.2rem", letterSpacing:"0.2em", textTransform:"uppercase", color:"var(--gold)", marginBottom:"0.4rem" }}>{b.title}</h3>
+              <p style={{fontWeight:"600", fontFamily:"var(--serif)", fontStyle:"italic", color:"var(--ivory-dim)", fontSize:"1rem", lineHeight:1.7 }}>{b.text}</p>
             </div>
-          </ScrollReveal>
-        ))}
+            </ScrollReveal>
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+}
 
 export default Meaning;
