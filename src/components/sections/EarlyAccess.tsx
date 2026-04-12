@@ -28,10 +28,10 @@ const Newsletter = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Your email"
-              className="flex-1 bg-transparent border border-foreground/15 px-5 py-4 font-sans text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-gold/50 transition-colors"
+              className=" w-full sm:flex-1 bg-transparent border border-foreground/15 px-5 py-4 font-sans text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-gold/50 transition-colors"
               required
             />
-            <button type="submit" className="bg-accent text-accent-foreground px-6 py-4 font-sans text-xs tracking-luxury uppercase font-medium transition-all duration-300 hover:shadow-[0_0_30px_hsl(var(--gold)/0.3)] active:scale-[0.97] whitespace-nowrap">
+            <button type="submit" className=" w-full sm:w-auto bg-accent text-accent-foreground px-6 py-4 font-sans text-xs tracking-luxury uppercase font-medium transition-all duration-300 hover:shadow-[0_0_30px_hsl(var(--gold)/0.3)] active:scale-[0.97] whitespace-nowrap">
               Get Early Access
             </button>
           </form>
