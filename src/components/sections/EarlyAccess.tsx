@@ -22,7 +22,7 @@ const Newsletter = () => {
           </p>
         </ScrollReveal>
         <ScrollReveal delay={0.3}>
-          <form onSubmit={(e) => e.preventDefault()} className="flex flex-row sm:flex-row max-w-md mx-auto">
+          <form onSubmit={(e) => e.preventDefault()} className="flex flex-col sm:flex-row sm:gap-2 max-w-md mx-auto gap-4">
             <input
               type="email"
               value={email}
