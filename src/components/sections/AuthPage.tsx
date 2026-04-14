@@ -114,7 +114,23 @@ const AuthPage = ({ onClose }: { onClose: () => void }) => {
   };
 
   return (
-    <section className="fixed inset-0 z-[100] bg-[#050707]/90 backdrop-blur-md overflow-hidden font-sans p-4 text-ivory flex items-center justify-center">
+    <section 
+      className="fixed inset-0 z-[100] font-sans p-4 text-ivory flex items-center justify-center overflow-hidden"
+      style={{
+        // THE RADIAL GRADIENT: Deep emerald/charcoal glow
+        background: "radial-gradient(circle at center, #1a241a 0%, #050707 65%, #000000 100%)",
+      }}
+    >
+      {/* Background Blur Overlay */}
+      <div className="absolute inset-0 backdrop-blur-md pointer-events-none" />
+
+      {/* Subtle secondary glow overlay */}
+      <div 
+        className="absolute inset-0 opacity-20 pointer-events-none"
+        style={{
+          background: "radial-gradient(50% 50% at 50% 50%, #c5a05933 0%, transparent 100%)",
+        }}
+      />
       
       <button 
         onClick={onClose} 
@@ -123,9 +139,10 @@ const AuthPage = ({ onClose }: { onClose: () => void }) => {
         Close ✕
       </button>
 
-      {/* 1. Shrunk max-w to 750px and strictly locked height to 480px */}
-      <div className="w-full max-w-[750px] md:h-[480px] max-h-[90vh] bg-[#0a0c0c] border border-white/10 rounded-2xl overflow-hidden flex flex-col md:flex-row shadow-2xl relative">
+      {/* Main Container: Strictly locked height to fit laptop screens */}
+      <div className="w-full max-w-[750px] md:h-[480px] max-h-[90vh] bg-[#0a0c0c] border border-white/10 rounded-2xl overflow-hidden flex flex-col md:flex-row shadow-[0_0_60px_rgba(0,0,0,0.8)] relative z-10">
         
+        {/* Left Side: Image Panel */}
         <div className="hidden md:flex md:w-5/12 relative bg-[#050707] items-end p-6 md:p-8 overflow-hidden">
           <img 
             src={phoenixHero} 
@@ -147,8 +164,8 @@ const AuthPage = ({ onClose }: { onClose: () => void }) => {
           </div>
         </div>
 
-        {/* 2. REMOVED overflow-y-auto completely. It is now impossible for a scrollbar to appear here. */}
-        <div className="w-full md:w-7/12 p-6 md:p-7 flex flex-col justify-center">
+        {/* Right Side: Form Panel */}
+        <div className="w-full md:w-7/12 p-6 md:p-7 flex flex-col justify-center bg-[#0a0c0c]">
           
           <div className="md:hidden mb-3 text-center">
              <h1 className="font-serif italic font-light text-lg text-ivory uppercase tracking-wide">
@@ -167,13 +184,10 @@ const AuthPage = ({ onClose }: { onClose: () => void }) => {
             </p>
           </div>
 
-          {/* 3. Tighter space-y-2.5 */}
           <form className="space-y-2.5" onSubmit={handleAuthSubmit}>
-            
             {!isLogin && (
               <div className="space-y-1">
                 <label className="text-[8px] tracking-widest uppercase text-ivory/80">Full Name</label>
-                {/* 4. Tighter input padding (py-1.5) and text-size (text-[11px]) */}
                 <input 
                   type="text" 
                   value={fullName}
@@ -226,7 +240,6 @@ const AuthPage = ({ onClose }: { onClose: () => void }) => {
               </div>
             )}
 
-            {/* Shrunk button padding */}
             <button 
               type="submit"
               disabled={isLoading}
@@ -236,7 +249,6 @@ const AuthPage = ({ onClose }: { onClose: () => void }) => {
             </button>
           </form>
 
-          {/* Social login margins shrunk to mt-3 */}
           <div className="mt-3">
             <div className="relative flex items-center mb-2">
               <div className="flex-grow border-t border-white/10"></div>
@@ -247,7 +259,7 @@ const AuthPage = ({ onClose }: { onClose: () => void }) => {
             </div>
 
             <div className="grid grid-cols-1">
-              <button className="flex justify-center items-center py-1.5 border border-white/10 rounded-md hover:bg-white/5 transition-colors">
+              <button type="button" className="flex justify-center items-center py-1.5 border border-white/10 rounded-md hover:bg-white/5 transition-colors">
                 <span className="text-[11px] font-serif">G</span>
               </button>
             </div>
@@ -256,6 +268,7 @@ const AuthPage = ({ onClose }: { onClose: () => void }) => {
           <p className="text-center mt-3 text-[10px] text-ivory/60 tracking-wide">
             {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
             <button 
+              type="button"
               onClick={() => {
                 setIsLogin(!isLogin);
                 setPassword(""); 
