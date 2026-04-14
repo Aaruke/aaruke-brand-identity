@@ -174,7 +174,7 @@ const ProductShowcase = ({
 
               <div className="mb-8">
                 <div className="flex items-baseline gap-4 mb-2">
-                  <span className="font-serif text-4xl text-gold italic">₹{liveProduct?.variants?.[0]?.price?.amount || "3,499"}</span>
+                  <span className="font-accent text-4xl text-gold tracking-tight">₹{Math.floor(liveProduct?.variants?.[0]?.price?.amount || "8,499").toLocaleString('en-IN')}</span>
                   <span className="text-muted-foreground line-through text-sm">₹8,499</span>
                 </div>
                 <p className="text-[10px] tracking-widest text-orange-500 uppercase font-medium">

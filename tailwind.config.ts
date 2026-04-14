@@ -2,7 +2,7 @@ import type { Config } from "tailwindcss";
 
 export default {
   darkMode: ["class"],
-  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+  content: ["./index.html","./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx,js,jsx , }"],
   prefix: "",
   theme: {
     container: {
@@ -14,8 +14,14 @@ export default {
     },
     extend: {
       fontFamily: {
+        heading: ['"Cormorant Garamond"', 'serif'],
+        accent: ['"Tenor Sans"', 'sans-serif'],
         serif: ["Cormorant Garamond", "Georgia", "serif"],
-        sans: ["Outfit", "system-ui", "sans-serif"],
+        sans: ["Roboto","Outfit", "system-ui", "sans-serif"],
+        price: ['Roboto', 'sans-serif'],
+      },
+      letterSpacing:{
+        luxury: "0.3em",
       },
       colors: {
         border: "hsl(var(--border))",
